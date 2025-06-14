@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +9,9 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import ContactDashboard from './pages/ContactDashboard';
+import CampaignManagement from './pages/CampaignManagement';
+import AnalyticsDashboard from './pages/AnalyticsDashboard';
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,10 @@ const AppRoutes = () => {
           <Dashboard />
         </ProtectedRoute>
       } />
+      {/* Public routes for development/testing */}
+      <Route path="/contacts" element={<ContactDashboard />} />
+      <Route path="/campaigns" element={<CampaignManagement />} />
+      <Route path="/analyticsdashboard" element={<AnalyticsDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
