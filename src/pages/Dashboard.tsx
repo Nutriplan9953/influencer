@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -21,6 +20,10 @@ import {
 } from 'lucide-react';
 import DashboardSidebar from '@/components/DashboardSidebar';
 import DashboardHeader from '@/components/DashboardHeader';
+import { InfluencerSearchProvider } from '@/contexts/InfluencerSearchContext';
+import { InfluencerFiltersPanel } from '@/components/InfluencerFiltersPanel';
+import { InfluencerSearchResults } from '@/components/InfluencerSearchResults';
+import { InfluencerProfileCard } from '@/components/InfluencerProfileCard';
 
 interface UserProfile {
   plan_type: string;
@@ -35,6 +38,41 @@ interface Activity {
   description: string;
   created_at: string;
 }
+
+// Mock influencer data for demo
+const mockInfluencers = [
+  {
+    id: '1',
+    displayName: 'Jane Doe',
+    username: 'janedoe',
+    followerCountFormatted: '15.8K',
+    engagementRate: 4.2,
+    bioSnippet: 'Fashion lover. Sharing my daily looks and style tips. Collaborations: DM or email.',
+    recentPosts: [
+      'https://placehold.co/100x100',
+      'https://placehold.co/100x100',
+      'https://placehold.co/100x100',
+      'https://placehold.co/100x100',
+    ],
+    location: 'New York',
+    niches: ['Fashion', 'Beauty'],
+  },
+  {
+    id: '2',
+    displayName: 'Mike Fit',
+    username: 'mikefit',
+    followerCountFormatted: '8.2K',
+    engagementRate: 6.1,
+    bioSnippet: 'Fitness coach. Inspiring healthy living. Let’s work together!',
+    recentPosts: [
+      'https://placehold.co/100x100',
+      'https://placehold.co/100x100',
+      'https://placehold.co/100x100',
+    ],
+    location: 'Los Angeles',
+    niches: ['Fitness'],
+  },
+];
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -292,6 +330,35 @@ const Dashboard = () => {
                     <p className="text-sm text-gray-400">Track your email open rates and response trends</p>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* Influencer Discovery Section */}
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>Influencer Discovery</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <InfluencerSearchProvider>
+                  <div className="flex gap-8">
+                    <InfluencerFiltersPanel
+                      filters={{}}
+                      setFilters={() => {}}
+                      onApply={() => {}}
+                      onClear={() => {}}
+                    />
+                    <div className="flex-1">
+                      <InfluencerSearchResults
+                        influencers={mockInfluencers}
+                        filters={{}}
+                        sort="best"
+                        view="grid"
+                        onSortChange={() => {}}
+                        onViewChange={() => {}}
+                      />
+                    </div>
+                  </div>
+                </InfluencerSearchProvider>
               </CardContent>
             </Card>
           </div>
