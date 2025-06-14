@@ -9,7 +9,7 @@ const kpis = [
 	{ label: 'Monthly Growth', value: '+18%' },
 ];
 
-export const AnalyticsDashboard = () => {
+const AnalyticsDashboard = () => {
 	return (
 		<div className="max-w-7xl mx-auto p-8">
 			<h1 className="text-2xl font-bold mb-6">Analytics & Reporting</h1>
@@ -501,3 +501,5 @@ export const AnalyticsDashboard = () => {
 		</div>
 	);
 };
+
+export default AnalyticsDashboard;
