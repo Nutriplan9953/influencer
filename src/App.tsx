@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import ContactDashboard from './pages/ContactDashboard';
 import CampaignManagement from './pages/CampaignManagement';
 import AnalyticsDashboard from './pages/AnalyticsDashboard';
+import TeamPage from './pages/TeamPage';
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const AppRoutes = () => {
       <Route path="/contacts" element={<ContactDashboard />} />
       <Route path="/campaigns" element={<CampaignManagement />} />
       <Route path="/analyticsdashboard" element={<AnalyticsDashboard />} />
+      <Route path="/team" element={<TeamPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
