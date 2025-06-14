@@ -24,6 +24,7 @@ import { InfluencerSearchProvider } from '@/contexts/InfluencerSearchContext';
 import { InfluencerFiltersPanel } from '@/components/InfluencerFiltersPanel';
 import { InfluencerSearchResults } from '@/components/InfluencerSearchResults';
 import { InfluencerProfileCard } from '@/components/InfluencerProfileCard';
+import { CardSkeleton } from '@/components/Skeletons';
 
 interface UserProfile {
   plan_type: string;
@@ -81,9 +82,11 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (user) {
       fetchUserData();
     }
+    setLoading(false);
   }, [user]);
 
   const fetchUserData = async () => {
@@ -137,10 +140,12 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600">Loading your dashboard...</p>
+      <div className="min-h-screen bg-gray-50 flex flex-col gap-8 items-center justify-center">
+        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => <CardSkeleton key={i} lines={3} />)}
+        </div>
+        <div className="w-full max-w-4xl mt-8">
+          <CardSkeleton lines={8} />
         </div>
       </div>
     );
